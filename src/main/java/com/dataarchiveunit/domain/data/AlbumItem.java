@@ -1,4 +1,4 @@
-package com.dataarchiveunit.domain.media;
+package com.dataarchiveunit.domain.data;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class MediaItem {
+public class AlbumItem {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,4 +19,8 @@ public class MediaItem {
 
     @Column(nullable = false, length = 8)
     private String fileType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "album_id")
+    private Album album;
 }
